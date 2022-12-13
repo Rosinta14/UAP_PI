@@ -33,3 +33,43 @@ while True:
     break
   else:
     print("\nPilihan anda salah!\nSilahkan coba lagi\n")
+
+    def note():
+  pilih = 0
+  print("-------NOTE-------")
+  nama_note = input("\nMasukkan nama file :")
+  while pilih !=3:
+    while(true):
+      try:
+        print("\n1 : Membuka",nama_note," \n2 : Menambah",nama_note," \n3 : Keluar Program")
+        pilih = int(input("Pilih menu : "))
+        if pilih<=0 or pilih>3 :
+          raise ValueError
+        print("")
+        break
+      except :
+        print("pilih sesuai menu")
+    
+    if pilih == 1:
+      try:
+          innote = open(nama_note, "r")
+          print("\nIsi dari",nama_note,":",innote.read())
+          innote.close()
+      except FileNotFoundError:
+          print("note", nama_note , "Tidak ditemukan")
+     
+    elif pilih == 2:
+      try:
+          with open(nama_note, 'r') as nn:
+            print("\nHasil dari",nama_note,": ")
+            print(nn.read())
+          isi = input("\nTambahkan teks ke file : ")
+          outnote = open(nama_note, 'a')
+          outnote.write("\n")
+          outnote.write(isi)
+          outnote = open(nama_note, 'r')
+          print("Selamat : ",isi, "Berhasil ditambahkan pada File",nama_note,"\n") 
+          print("\nIsi dari",nama_note,":",outnote.read())
+          outnote.close()  
+      except FileNotFoundError:
+          print("Note",nama_note,"Tidak ditemukan ")
