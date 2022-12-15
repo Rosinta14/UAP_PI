@@ -18,6 +18,7 @@ while True:
       if data['holiday_date'].find(cari)!=-1:
         hari=HariLibur(data)
         hari.show()
+        found=True
     if found==False:
       print("Hari tidak ditemukan\n")
   elif pilih==3:
@@ -27,6 +28,7 @@ while True:
       if data['holiday_name'].lower().find(cari.lower())!=-1:
         hari=HariLibur(data)
         hari.show()
+        found=True
     if found==False:
       print("Hari tidak ditemukan\n")
   elif pilih==4:
@@ -34,16 +36,16 @@ while True:
   else:
     print("\nPilihan anda salah!\nSilahkan coba lagi\n")
 
-    def note():
+    # def note():
   pilih = 0
   print("-------NOTE-------")
   nama_note = input("\nMasukkan nama file :")
-  while pilih !=3:
-    while(true):
+  while pilih !=4:
+    while(True):
       try:
-        print("\n1 : Membuka",nama_note," \n2 : Menambah",nama_note," \n3 : Keluar Program")
+        print("\n1 : Membuka",nama_note," \n2 : Menambah",nama_note," \n3 : Membuat",nama_note,"\n4 : Keluar Program")
         pilih = int(input("Pilih menu : "))
-        if pilih<=0 or pilih>3 :
+        if pilih<=0 or pilih>4 :
           raise ValueError
         print("")
         break
@@ -73,3 +75,15 @@ while True:
           outnote.close()  
       except FileNotFoundError:
           print("Note",nama_note,"Tidak ditemukan ")
+    elif pilih==3:
+      if os.path.isfile(nama_note):
+        print("File sudah ada")
+      else:
+        outnote = open(nama_note, 'w')
+        isi = input("\nTambahkan teks ke file : ")
+        outnote.write("\n")
+        outnote.write(isi)
+        outnote.close()
+        outnote = open(nama_note, 'r')
+        print("Selamat : ",isi, "Berhasil ditambahkan pada File",nama_note,"\n") 
+        print("\nIsi dari",nama_note,":",outnote.read())
